@@ -24,9 +24,12 @@ export class January  implements Month {
 				row += " ";
 				weekCounter++;
 				i++;
+				if(i >= this.numberOfDaysNumber) {
+					break;
+				}
 			}
 			row += '\n';
-			weekCounter = 1;
+			weekCounter = 0;
 		}
 		return row;
 	}
