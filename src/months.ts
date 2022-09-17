@@ -15,30 +15,17 @@ export class January  implements Month {
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
 	}
 
-	printMonth(): string{
-		let weekCounter = 0;
-		let whileCounter = [];
-		let row = "";
-		let i = 1;
-		let max: number;
-		while(i <= this.numberOfDaysNumber) {
-			while(weekCounter < 7) {
-				row += "[" + i + "]";
-				row += " ";
-				weekCounter++;
-				i++;
-				whileCounter.push(i);
-				max = Math.max(...whileCounter);
-				if(i >= this.numberOfDaysNumber) {
-					break;
-				}
-			}
-			if(max > this.numberOfDaysNumber) {
-			} 
-			row += '\n';
-			weekCounter = 0;
+	printMonth(): void{
+		const config : any = {
+			columnDefault: {
+				width: 10,
+			},
+			header: {
+				alignment: 'center',
+				content: this.name,
+			},
 		}
-		return row;
+		console.log(table(this.monthTable(), config));
 	}
 
 	monthTable(): Array<[number]>{
@@ -46,6 +33,7 @@ export class January  implements Month {
 		let i = 1;
 		let row: Array<number|string> = [];
 		let acc = [];
+
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
 				row.push(i);
@@ -55,10 +43,12 @@ export class January  implements Month {
 			acc.push(row);
 			weekCounter = 0;
 			row = [];
+
 			if(i === this.numberOfDaysNumber) {
-				let accLastIndex = acc.length - 1;
+				let accLastIndex = acc.length - 1; 
 				acc[accLastIndex].push(i); // correcting by one mistake
-				while(acc[accLastIndex].length < 7) {
+
+				while(acc[accLastIndex].length < 7) { // adding empty cells
 					acc[accLastIndex].push('');
 				}
 				break;
