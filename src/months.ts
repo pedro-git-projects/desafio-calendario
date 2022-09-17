@@ -291,7 +291,7 @@ export class June implements Month {
 
 	constructor() {
 		this.name = MonthName.June;
-		this.numberOfDays = MonthType.ThirtyOne;
+		this.numberOfDays = MonthType.Thirty;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
 	}
