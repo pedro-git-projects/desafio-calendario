@@ -1,19 +1,21 @@
 import {MonthName, MonthType} from "./month.enum";
 import {Month} from "./month.interface"
 import { table } from "table";
-import { isLeapYear } from "./weekday";
+import { getWeeksFromYear, isLeapYear } from "./weekday";
 
 export class January  implements Month {
 	name: MonthName;
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	firstWeekDay: string;
 
-	constructor() {
+	constructor(year:string) {
 		this.name = MonthName.January;
 		this.numberOfDays = MonthType.ThirtyOne;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.firstWeekDay = getWeeksFromYear(year);
 	}
 
 	printMonth(): void{

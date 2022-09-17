@@ -2,7 +2,7 @@ import * as months from "./months";
 
 export abstract class Calendar  {
 	public static printCalendar(year: string): void {
-		let j = new months.January;
+		let j = new months.January(year);
 		j.printMonth();
 		let f = new months.February(year);
 		f.printMonth();

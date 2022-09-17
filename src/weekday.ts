@@ -1,4 +1,4 @@
-const weekDaySwitch = (day:number) => {
+export const weekDaySwitch = (day:number) => {
 	switch(day) {
 		case 0:
 			return "Sun";
