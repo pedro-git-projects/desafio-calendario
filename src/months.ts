@@ -1,21 +1,22 @@
 import {MonthName, MonthType} from "./month.enum";
 import {Month} from "./month.interface"
 import { table } from "table";
-import { getWeeksFromYear, isLeapYear } from "./weekday";
+import { getDayFromYear, getWeeksFromYear, isLeapYear } from "./weekday";
+import {CircularLinkedDays} from "./cyclic";
 
 export class January  implements Month {
 	name: MonthName;
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
-	firstWeekDay: string;
+	firstWeekDay: CircularLinkedDays;
 
 	constructor(year:string) {
 		this.name = MonthName.January;
 		this.numberOfDays = MonthType.ThirtyOne;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
-		this.firstWeekDay = getWeeksFromYear(year);
+		this.firstWeekDay =  new CircularLinkedDays(getWeeksFromYear(year));
 	}
 
 	printMonth(): void{
@@ -39,7 +40,8 @@ export class January  implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.firstWeekDay.current.day + " \n " + i);
+				this.firstWeekDay.current = this.firstWeekDay.current.next; 
 				weekCounter++;
 				i++;
 			}
@@ -49,7 +51,7 @@ export class January  implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); // correcting by one mistake
+				acc[accLastIndex].push(this.firstWeekDay.current.day + "\n" + i); // correcting by one mistake
 
 				while(acc[accLastIndex].length < 7) { // adding empty cells
 					acc[accLastIndex].push('');

@@ -8,10 +8,14 @@ class Day {
 		this.day = weekDaySwitch(day);
 		this.next = null;
 	}
+
+	toString() {
+		return 
+	}
 }
 
 export class CircularLinkedDays {
-	head: Day;
+	current: Day;
 
 	constructor(startingDay:string) {
 		let sun = new Day(0);
@@ -24,11 +28,19 @@ export class CircularLinkedDays {
 		let start:Day;
 
 		sun.next = mon;
+		sun.day = "Sun";
 		mon.next = tue;
+		mon.day = "Mon";
 		tue.next = wend;
+		tue.day = "Tue";
+		wend.next = thur;
+		wend.day = "Wend";
 		thur.next = fri;
+		thur.day = "Thur";
 		fri.next = sat;
+		fri.day = "Fri";
 		sat.next = sun;
+		sat.day = "Sat";
 
 		switch(startingDay) {
 			case "Sun":
@@ -54,6 +66,6 @@ export class CircularLinkedDays {
 				break;
 		}
 		
-		this.head = start;
+		this.current = start;
 	}
 }

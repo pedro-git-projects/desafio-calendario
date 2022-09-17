@@ -1,7 +1,8 @@
+import {CircularLinkedDays} from "./cyclic";
 import { MonthName, MonthType } from "./month.enum";
 
 export interface Month {
-	firstWeekDay ?: string;
+	firstWeekDay ?: CircularLinkedDays;
 	name : MonthName;
 	numberOfDays: MonthType;
 	isLeapYear ?: boolean;
