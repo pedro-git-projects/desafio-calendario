@@ -82,6 +82,7 @@ export class February implements Month {
 			},
 		}
 		console.log(table(this.monthTable(), config));
+		table(this.monthTable(), config)
 	}
 
 	monthTable(): Array<[number]>{
@@ -625,7 +626,7 @@ export class December implements Month {
 	numberOfWeeks: number;
 
 	constructor() {
-		this.name = MonthName.April;
+		this.name = MonthName.December;
 		this.numberOfDays = MonthType.ThirtyOne;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);

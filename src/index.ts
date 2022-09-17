@@ -1,10 +1,3 @@
-import { April, February, January } from "./months";
+import {Calendar} from "./calendar";
 
-let j = new January();
-j.printMonth();
-
-let f = new February();
-f.printMonth();
-
-let a = new April();
-a.printMonth();
+Calendar.printCalendar();
