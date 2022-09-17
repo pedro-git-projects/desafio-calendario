@@ -1,4 +1,10 @@
-import { January } from "./months";
+import { April, February, January } from "./months";
 
 let j = new January();
-console.log(j.printMonth());
+j.printMonth();
+
+let f = new February();
+f.printMonth();
+
+let a = new April();
+a.printMonth();
