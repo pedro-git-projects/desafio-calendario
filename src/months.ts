@@ -1,6 +1,7 @@
 import {MonthName, MonthType} from "./month.enum";
 import {Month} from "./month.interface"
 import { table } from "table";
+import { isLeapYear } from "./weekday";
 
 export class January  implements Month {
 	name: MonthName;
@@ -63,10 +64,17 @@ export class February implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	isLeapYear: boolean;
 
-	constructor() {
+	constructor(year: string) {
 		this.name = MonthName.February;
-		this.numberOfDays = MonthType.TwentyEight;
+		this.isLeapYear = isLeapYear(year); 
+		if(this.isLeapYear === true) {
+			this.numberOfDays = MonthType.TwentyNine;
+		} else {
+			this.numberOfDays = MonthType.TwentyEight;
+		}
+
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
 	}
@@ -103,10 +111,21 @@ export class February implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				if(acc[accLastIndex].length === 7) {
+					let newRow = [];
+					newRow.push(i);
+					acc.push(newRow);
+					let newLastIndex = acc.length - 1;
 
-				while(acc[accLastIndex].length < 7) { 
-					acc[accLastIndex].push('');
+					while(acc[newLastIndex].length < 7){
+						acc[newLastIndex].push('');
+					}
+				} else {
+					acc[accLastIndex].push(i); 
+
+					while(acc[accLastIndex].length < 7) { 
+						acc[accLastIndex].push('');
+					}
 				}
 				break;
 			}

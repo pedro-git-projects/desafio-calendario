@@ -1,10 +1,10 @@
 import * as months from "./months";
 
 export abstract class Calendar  {
-	public static printCalendar(): void {
+	public static printCalendar(year: string): void {
 		let j = new months.January;
 		j.printMonth();
-		let f = new months.February;
+		let f = new months.February(year);
 		f.printMonth();
 		let m = new months.March;
 		m.printMonth();
