@@ -104,7 +104,7 @@ export class February implements Month {
 		table(this.monthTable(), config)
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -144,6 +144,10 @@ export class February implements Month {
 		}
 		return acc;
 	}
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
+	}
 };
 
 export class March implements Month {
@@ -151,12 +155,14 @@ export class March implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor() {
+	constructor(last: CircularLinkedDays) {
 		this.name = MonthName.March;
 		this.numberOfDays = MonthType.ThirtyOne;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -172,7 +178,7 @@ export class March implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -180,7 +186,8 @@ export class March implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -190,7 +197,8 @@ export class March implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 				while(acc[accLastIndex].length < 7) { 
 					acc[accLastIndex].push('');
@@ -199,6 +207,10 @@ export class March implements Month {
 			}
 		}
 		return acc;
+	}
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
 	}
 };
 
@@ -207,12 +219,14 @@ export class April implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor() {
+	constructor(last:CircularLinkedDays) {
 		this.name = MonthName.April;
 		this.numberOfDays = MonthType.Thirty;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last; 
 	}
 
 	printMonth(): void{
@@ -228,7 +242,7 @@ export class April implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -236,7 +250,8 @@ export class April implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -246,7 +261,8 @@ export class April implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 				while(acc[accLastIndex].length < 7) { 
 					acc[accLastIndex].push('');
@@ -256,6 +272,10 @@ export class April implements Month {
 		}
 		return acc;
 	}
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
+	}	
 };
 
 export class May implements Month {
@@ -263,12 +283,14 @@ export class May implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor() {
+	constructor(last: CircularLinkedDays) {
 		this.name = MonthName.May;
 		this.numberOfDays = MonthType.ThirtyOne;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -284,7 +306,7 @@ export class May implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -292,7 +314,8 @@ export class May implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -302,7 +325,8 @@ export class May implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 				while(acc[accLastIndex].length < 7) { 
 					acc[accLastIndex].push('');
@@ -311,6 +335,10 @@ export class May implements Month {
 			}
 		}
 		return acc;
+	}
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
 	}
 };
 
@@ -319,12 +347,14 @@ export class June implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor() {
+	constructor(last:CircularLinkedDays) {
 		this.name = MonthName.June;
 		this.numberOfDays = MonthType.Thirty;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -340,7 +370,7 @@ export class June implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -348,7 +378,8 @@ export class June implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -358,15 +389,31 @@ export class June implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				if(acc[accLastIndex].length === 7) {
+					let newRow = [];
+					newRow.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+					acc.push(newRow);
+					let newLastIndex = acc.length - 1;
 
-				while(acc[accLastIndex].length < 7) { 
-					acc[accLastIndex].push('');
+					while(acc[newLastIndex].length < 7){
+						acc[newLastIndex].push('');
+					}
+				} else {
+					acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+
+					while(acc[accLastIndex].length < 7) { 
+						acc[accLastIndex].push('');
+					}
 				}
 				break;
 			}
 		}
 		return acc;
+	}
+
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
 	}
 };
 
@@ -375,12 +422,14 @@ export class July implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor() {
+	constructor(last:CircularLinkedDays) {
 		this.name = MonthName.July;
 		this.numberOfDays = MonthType.ThirtyOne;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -396,7 +445,7 @@ export class July implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -404,7 +453,8 @@ export class July implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -414,7 +464,8 @@ export class July implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 				while(acc[accLastIndex].length < 7) { 
 					acc[accLastIndex].push('');
@@ -423,6 +474,10 @@ export class July implements Month {
 			}
 		}
 		return acc;
+	}
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
 	}
 };
 
@@ -431,12 +486,14 @@ export class August implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor() {
+	constructor(last:CircularLinkedDays) {
 		this.name = MonthName.August;
 		this.numberOfDays = MonthType.ThirtyOne;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -452,7 +509,7 @@ export class August implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -460,7 +517,8 @@ export class August implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -470,7 +528,8 @@ export class August implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 				while(acc[accLastIndex].length < 7) { 
 					acc[accLastIndex].push('');
@@ -479,6 +538,10 @@ export class August implements Month {
 			}
 		}
 		return acc;
+	}
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
 	}
 };
 
@@ -487,12 +550,14 @@ export class September implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay:CircularLinkedDays;
 
-	constructor() {
+	constructor(last:CircularLinkedDays) {
 		this.name = MonthName.April;
 		this.numberOfDays = MonthType.Thirty;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -508,7 +573,7 @@ export class September implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -516,7 +581,8 @@ export class September implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -526,7 +592,8 @@ export class September implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 				while(acc[accLastIndex].length < 7) { 
 					acc[accLastIndex].push('');
@@ -534,7 +601,12 @@ export class September implements Month {
 				break;
 			}
 		}
+
 		return acc;
+	}
+	
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
 	}
 };
 
@@ -543,12 +615,14 @@ export class October implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor() {
+	constructor(last:CircularLinkedDays) {
 		this.name = MonthName.October;
 		this.numberOfDays = MonthType.ThirtyOne;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -564,7 +638,7 @@ export class October implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -572,7 +646,8 @@ export class October implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -582,7 +657,8 @@ export class October implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 				while(acc[accLastIndex].length < 7) { 
 					acc[accLastIndex].push('');
@@ -591,6 +667,10 @@ export class October implements Month {
 			}
 		}
 		return acc;
+	}
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
 	}
 };
 
@@ -599,12 +679,14 @@ export class November implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor() {
+	constructor(last:CircularLinkedDays) {
 		this.name = MonthName.November;
 		this.numberOfDays = MonthType.Thirty;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -620,7 +702,7 @@ export class November implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -628,7 +710,8 @@ export class November implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -638,7 +721,8 @@ export class November implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 				while(acc[accLastIndex].length < 7) { 
 					acc[accLastIndex].push('');
@@ -648,6 +732,10 @@ export class November implements Month {
 		}
 		return acc;
 	}
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.lastMonthWeekDay;
+	}
 };
 
 export class December implements Month {
@@ -655,12 +743,14 @@ export class December implements Month {
 	numberOfDays: MonthType;
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor() {
+	constructor(last:CircularLinkedDays) {
 		this.name = MonthName.December;
 		this.numberOfDays = MonthType.ThirtyOne;
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -676,7 +766,7 @@ export class December implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -684,7 +774,8 @@ export class December implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -694,7 +785,8 @@ export class December implements Month {
 
 			if(i === this.numberOfDaysNumber) {
 				let accLastIndex = acc.length - 1; 
-				acc[accLastIndex].push(i); 
+				acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 				while(acc[accLastIndex].length < 7) { 
 					acc[accLastIndex].push('');
