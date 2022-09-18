@@ -1,8 +1,9 @@
 import {MonthName, MonthType} from "./month.enum";
 import {Month} from "./month.interface"
 import { table } from "table";
-import { getDayFromYear, getWeeksFromYear, isLeapYear } from "./weekday";
+import {  getWeeksFromYear, isLeapYear } from "./weekday";
 import {CircularLinkedDays} from "./cyclic";
+
 
 export class January  implements Month {
 	name: MonthName;
@@ -61,6 +62,10 @@ export class January  implements Month {
 		}
 		return acc;
 	}
+
+	getCurrentWeekDay(): CircularLinkedDays {
+		return this.firstWeekDay;
+	} 
 };
 
 export class February implements Month {
@@ -69,8 +74,9 @@ export class February implements Month {
 	numberOfDaysNumber :number;
 	numberOfWeeks: number;
 	isLeapYear: boolean;
+	lastMonthWeekDay: CircularLinkedDays;
 
-	constructor(year: string) {
+	constructor(year: string, last: CircularLinkedDays) {
 		this.name = MonthName.February;
 		this.isLeapYear = isLeapYear(year); 
 		if(this.isLeapYear === true) {
@@ -81,6 +87,7 @@ export class February implements Month {
 
 		this.numberOfDaysNumber = parseInt(this.numberOfDays);
 		this.numberOfWeeks = Math.floor(this.numberOfDaysNumber/ 7);
+		this.lastMonthWeekDay = last;
 	}
 
 	printMonth(): void{
@@ -105,6 +112,7 @@ export class February implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
+				console.log(this.lastMonthWeekDay.current.day)
 				row.push(i);
 				weekCounter++;
 				i++;

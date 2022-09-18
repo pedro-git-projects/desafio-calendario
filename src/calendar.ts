@@ -4,7 +4,7 @@ export abstract class Calendar  {
 	public static printCalendar(year: string): void {
 		let j = new months.January(year);
 		j.printMonth();
-		let f = new months.February(year);
+		let f = new months.February(year, j.getCurrentWeekDay());
 		f.printMonth();
 		let m = new months.March;
 		m.printMonth();

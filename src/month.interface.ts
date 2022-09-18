@@ -6,4 +6,5 @@ export interface Month {
 	name : MonthName;
 	numberOfDays: MonthType;
 	isLeapYear ?: boolean;
+	lastMonthWeekDay ?: CircularLinkedDays;
 };

@@ -1,3 +1,5 @@
 import {Calendar} from "./calendar";
+const prompt = require("prompt-sync")();
 
-Calendar.printCalendar("2022");
+const year = prompt("-> Please enter the desired year: ")
+Calendar.printCalendar(year);
