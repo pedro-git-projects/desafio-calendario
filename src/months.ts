@@ -33,7 +33,7 @@ export class January  implements Month {
 		console.log(table(this.monthTable(), config));
 	}
 
-	monthTable(): Array<[number]>{
+	monthTable(): Array<[number]> {
 		let weekCounter = 0;
 		let i = 1;
 		let row: Array<number|string> = [];
@@ -112,8 +112,8 @@ export class February implements Month {
 
 		while(i <= this.numberOfDaysNumber) {
 			while(weekCounter < 7 && i < this.numberOfDaysNumber) {
-				console.log(this.lastMonthWeekDay.current.day)
-				row.push(i);
+				row.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+				this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 				weekCounter++;
 				i++;
 			}
@@ -125,7 +125,7 @@ export class February implements Month {
 				let accLastIndex = acc.length - 1; 
 				if(acc[accLastIndex].length === 7) {
 					let newRow = [];
-					newRow.push(i);
+					newRow.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
 					acc.push(newRow);
 					let newLastIndex = acc.length - 1;
 
@@ -133,7 +133,7 @@ export class February implements Month {
 						acc[newLastIndex].push('');
 					}
 				} else {
-					acc[accLastIndex].push(i); 
+					acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
 
 					while(acc[accLastIndex].length < 7) { 
 						acc[accLastIndex].push('');
