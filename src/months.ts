@@ -134,7 +134,6 @@ export class February implements Month {
 					}
 				} else {
 					acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
-					this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 					while(acc[accLastIndex].length < 7) { 
 						acc[accLastIndex].push('');
@@ -147,11 +146,13 @@ export class February implements Month {
 	}
 
 	getCurrentWeekDay(): CircularLinkedDays {
-		if(isLeapYear) {
+		if(this.isLeapYear) {
 			this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 			return this.lastMonthWeekDay;
 		}
 		else {
+			this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
+			this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 			return this.lastMonthWeekDay;
 		}
 	}
