@@ -126,6 +126,7 @@ export class February implements Month {
 				if(acc[accLastIndex].length === 7) {
 					let newRow = [];
 					newRow.push(this.lastMonthWeekDay.current.next.day + "\n" + i);
+					this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 					acc.push(newRow);
 					let newLastIndex = acc.length - 1;
 
@@ -134,6 +135,7 @@ export class February implements Month {
 					}
 				} else {
 					acc[accLastIndex].push(this.lastMonthWeekDay.current.next.day + "\n" + i); 
+					this.lastMonthWeekDay.current = this.lastMonthWeekDay.current.next;
 
 					while(acc[accLastIndex].length < 7) { 
 						acc[accLastIndex].push('');
