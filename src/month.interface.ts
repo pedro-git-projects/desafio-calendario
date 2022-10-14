@@ -4,7 +4,7 @@ import { MonthName, MonthType } from "./month.enum";
 export interface Month {
 	firstWeekDay ?: CircularLinkedDays;
 	name : MonthName;
-	numberOfDays: MonthType;
+	monthType: MonthType;
 	isLeapYear ?: boolean;
-	lastMonthWeekDay ?: CircularLinkedDays;
+	lastWeekDay ?: CircularLinkedDays;
 };

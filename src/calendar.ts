@@ -1,30 +1,43 @@
-import * as months from "./months";
+import { ConcreteMonth } from "./concrete.month";
+import { MonthName } from "./month.enum";
+import { MonthType } from "./month.enum";
 
 export abstract class Calendar  {
 	public static printCalendar(year: string): void {
-		let j = new months.January(year);
-		j.printMonth();
-		let f = new months.February(year, j.getCurrentWeekDay());
+		const j = new ConcreteMonth(MonthName.January, MonthType.ThirtyOne, year);
+		j.printFirstMonth();
+
+		const f = new ConcreteMonth(MonthName.February, undefined , year, j.getCurrentWeekDay());
 		f.printMonth();
-		let m = new months.March(f.getCurrentWeekDay());
+
+		const m = new ConcreteMonth(MonthName.March, MonthType.ThirtyOne, year, f.getLastWeekDay());
 		m.printMonth();
-		let apr = new months.April(m.getCurrentWeekDay());
+
+		const apr = new ConcreteMonth(MonthName.April, MonthType.Thirty, year, f.getLastWeekDay());
 		apr.printMonth();
-		let ma = new months.May(apr.getCurrentWeekDay());
+
+		const ma = new ConcreteMonth(MonthName.May, MonthType.ThirtyOne, year, apr.getLastWeekDay());
 		ma.printMonth();
-		let jun = new months.June(ma.getCurrentWeekDay());
+
+		const jun = new ConcreteMonth(MonthName.June, MonthType.Thirty, year, ma.getLastWeekDay());
 		jun.printMonth();
-		let jul = new months.July(jun.getCurrentWeekDay());
+
+		const jul = new ConcreteMonth(MonthName.July, MonthType.ThirtyOne, year, jun.getLastWeekDay());
 		jul.printMonth();
-		let aug = new months.August(jul.getCurrentWeekDay());
+
+		const aug = new ConcreteMonth(MonthName.August, MonthType.ThirtyOne, year, jul.getLastWeekDay());
 		aug.printMonth();
-		let sep = new months.September(aug.getCurrentWeekDay());
+
+		const sep = new ConcreteMonth(MonthName.September, MonthType.Thirty, year, aug.getLastWeekDay());
 		sep.printMonth();
-		let oct = new months.October(sep.getCurrentWeekDay());
+
+		const oct = new ConcreteMonth(MonthName.October, MonthType.ThirtyOne, year, sep.getLastWeekDay());
 		oct.printMonth();
-		let nov = new months.November(oct.getCurrentWeekDay());
+
+		const nov = new ConcreteMonth(MonthName.November, MonthType.Thirty, year, oct.getLastWeekDay());
 		nov.printMonth();
-		let dec = new months.December(nov.getCurrentWeekDay());
+		
+		const dec = new ConcreteMonth(MonthName.December, MonthType.ThirtyOne, year, nov.getLastWeekDay());
 		dec.printMonth();
 	}
 }
